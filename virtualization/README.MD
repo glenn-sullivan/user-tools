@@ -176,7 +176,9 @@ Kubernetes provides a number of options for authenticating users.  This document
 
 Generally, it is recommended to deploy an OIDC provider (like coreos/dex) to integrate with your existing authentication infrastructure (such as LDAP).  This is outside the scope of this document.  Additional info can be found at [[https://kubernetes.io/docs/reference/access-authn-authz/authentication/#users-in-kubernetes]]
 
-1) Create a namespace / service account / rbac role / rbac rolebinding for a new user (run this on the server you provisioned)
+Manually configuring authentication for the Kubernetes cluster:  
+
+1) Copy and paste these command to create namespace / service account / rbac role / rbac rolebinding for a new user (run this on the server you provisioned) - substitute "john.doe@test" for whatever email you want to use :
 
 ```
 USER_EMAIL=john.doe@test
