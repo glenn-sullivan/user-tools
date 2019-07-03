@@ -220,8 +220,17 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 EOL
 ```
+After running the above commands, you should see similiar output to this:
 
-2) Generate a kubeconfig file for the user
+```
+namespace/john.doe created
+serviceaccount/john.doe.test created
+role.rbac.authorization.k8s.io/john.doe.test created
+rolebinding.rbac.authorization.k8s.io/john.doe.test created
+```
+
+
+2) Copy and paste the below command on the provisioned server to generate a kubeconfig file for the user, again substitute "john.doe@test" for whatever email you want to use:
 
 ```
 USER_EMAIL=john.doe@test
@@ -257,8 +266,14 @@ KUBECONFIG=${DEFAULT_KUBECONFIG} kubectl config set-context ${CONTEXT_NAME} \
 
 KUBECONFIG=${DEFAULT_KUBECONFIG} kubectl config use-context ${CONTEXT_NAME}
 ```
+After pasting the above in, you should see output simliar to this:
 
-3) Copy the generated kubeconfig file to the machine / user home directory that you'd like to use when remotely accessing the cluster
+```
+Switched to context "john.doe.cnnos-cluster".
+```
+
+
+3) Copy the generated kubeconfig file to the machine / user home directory that you'd like to use when remotely accessing the cluster - substituting the USERNAME and the USER_IP for the target machine that will be used to access the cluster.  If you are only accessing the cluster from the server that it's running on, you can skip this step.
 
 ```
 USERNAME=jdoe
@@ -269,6 +284,8 @@ scp ./kubeconfig ${USERNAME}@${USER_IP}:${KUBE_DIR}/config
 ```
 
 ## Installing user tools to local laptop / server
+
+These steps prepare the host that will be used to remotely manage the Kubernetes cluster that was provisioned above.  If you are going to access the cluster directly, these steps can be skipped.
 
 1) Download the user tools installation script
 
